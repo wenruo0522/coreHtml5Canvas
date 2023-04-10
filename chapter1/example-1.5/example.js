@@ -19,10 +19,11 @@ function drawBackground() {
     context.strokeStyle = "lightgray"
     context.lineWidth = 0.5
 
-    while (i > VERTICAL_LINE_SPACING * 4) {
+    while (i > (VERTICAL_LINE_SPACING * 4)) {
         context.beginPath()
         context.moveTo(0, i)
         context.lineTo(context.canvas.width, i)
+        context.stroke()
         i -= VERTICAL_LINE_SPACING
     }
 }
