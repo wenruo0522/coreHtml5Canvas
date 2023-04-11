@@ -40,7 +40,7 @@ context.canvas.onmousedown = function(e) {
     e.stopPropagation()
 }
 
-setInterval(() => {
+setInterval(function() {
     if (!paused) {
         context.clearRect(0, 0, context.canvas.width, context.canvas.height)
         drawGrid(context, "lightgray", 10, 10)
@@ -56,17 +56,16 @@ setInterval(() => {
 }, 1000/60)
 
 function adjustPosition(circle) {
-    let { x, y, velocityX, velocityY, radius } = circle
-    if (x + velocityX + radius > context.canvas.width || x + velocityX - radius < 0) {
-        velocityX = - velocityX
+    if (circle.x + circle.velocityX + circle.radius > context.canvas.width || circle.x + circle.velocityX - circle.radius < 0) {
+        circle.velocityX = - circle.velocityX
     }
 
-    if (y + velocityY + radius > context.canvas.height || y + velocityY - radius < 0) {
-        velocityY = - velocityY
+    if (circle.y + circle.velocityY + circle.radius > context.canvas.height || circle.y + circle.velocityY - circle.radius < 0) {
+        circle.velocityY = - circle.velocityY
     }
 
-    x += velocityX
-    y += velocityY
+    circle.x += circle.velocityX
+    circle.y += circle.velocityY
 }
 
 function drawGrid(context, color, stepX, stepY) {
